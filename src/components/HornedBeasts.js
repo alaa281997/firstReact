@@ -3,6 +3,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import data from './data.json';
 
 class HornedBeasts extends React.Component {
 
@@ -18,11 +19,14 @@ class HornedBeasts extends React.Component {
             numberOfVotes: this.state.numberOfVotes + 1,
         })
     }
-
+    getArray=()=>{
+        this.props.getArr(this.props.title)
+    }
+ 
     render() {
         return (
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={this.props.image_url} alt={this.props.title}/>
+            <Card key={this.props.indx} style={{ width: '18rem' }}>
+            <Card.Img onClick={this.getArray} variant="top" src={this.props.imageUrl} alt={this.props.title}/>
             <Card.Body>
               <Card.Title>{this.props.title}</Card.Title>
               <Card.Text>
@@ -32,7 +36,8 @@ class HornedBeasts extends React.Component {
             <Card.Text>Number of votes : {this.state.numberOfVotes} </Card.Text>
             <Button variant="primary"  onClick={this.numOfVotes}>Votes</Button>
             
-          </Card>
+           </Card>
+      
         )
     }
 
